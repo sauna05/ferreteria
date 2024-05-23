@@ -1,0 +1,16 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+
+.login{
+    position: relative;
+    justify-content: center;
+}
+form{
+    position: relative;
+    align-items: center;
+    background-color: blue;
+    width: 12vw;
+    left: 12vw;
+}
