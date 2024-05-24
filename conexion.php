@@ -7,8 +7,8 @@ class Conexion{
 
     public function __construct(){
         try{
-            $this->conexion = new PDO($this->url,$this->usuario,$this->contrasenia);
-            echo" se conecto al baase de datos";
+            $this ->conexion = new PDO($this->url,$this->usuario,$this->contrasenia);
+          
         }catch(PDOException $ex){
            echo $ex->getMessage();
         }
