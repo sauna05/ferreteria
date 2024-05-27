@@ -5,7 +5,7 @@ $id_usuario=$_SESSION['usuarioID'];
 echo $id_usuario;
 
 
-echo 'hola bienbenido pudiste iniciar sesion';
+echo 'hola Bienvenido lograste iniciar sesion';
 
 
 ?>
