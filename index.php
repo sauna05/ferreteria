@@ -9,17 +9,17 @@ $index_contro= new Username_control($userModel);
 $reuqest=$_SERVER['REQUEST_URI'];
 
 switch($reuqest){
-        case '/loperena/':
+        case '/ferreteria/':
             if (!isset($_SESSION["usuario"])) {
             
                 $index_contro->login();
                 return;
             }
 
-        case '/loperena/inicio':
+        case '/ferreteria/inicio':
             $index_contro->login();
             break;
-        case '/loperena/Registrar_persona':
+        case '/ferreteria/Registrar_persona':
             $index_contro->Registrar_persona();
             break;
         
