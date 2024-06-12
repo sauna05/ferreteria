@@ -1,37 +1,45 @@
 <?php
-session_start();
+require_once 'app/model/UserModel.php';
+require_once 'app/controller/UserController.php';
 require_once 'config/Conexion.php';
-require_once 'app/controller/Username_control.php';
-require_once 'app/model/User.php';
 
-$userModel = new User();
-$index_contro= new Username_control($userModel);
-$reuqest=$_SERVER['REQUEST_URI'];
+$userController = new UserController();
 
-switch($reuqest){
-        case '/ferreteria/':
-            if (!isset($_SESSION["usuario"])) {
-            
-                $index_contro->login();
-                return;
-            }
-
-        case '/ferreteria/inicio':
-            $index_contro->login();
+// Verificar si se solicita alguna acción
+if(isset($_GET['action'])) {
+    $action = $_GET['action'];
+    switch($action) {
+        case 'logiar':
+            // Autenticar al usuario
+            $userController->autenticar();
             break;
-        case '/ferreteria/Registrar_persona':
-            $index_contro->Registrar_persona();
+
+        case 'vista':
+            // enviar al formulario de crear cuenta
+            $userController->View_crear();
+            break;
+
+
+        case 'crear':
+            // Crear cuenta de usuario
+            $userController->Crear_cuenta();
+            break;
+
+        case 'asignar_usuario':
+            // Crear cuenta de usuario
+            $userController->asignar_usuario();
             break;
         
-
-
+                
+        default:
+            // Manejar acción desconocida
+            echo "Acción desconocida";
+            break;
+    }
+} else {
+    //por defecto se vera el login
+   
+    require_once 'app/view/login.php';
+    
 }
-
-
-
-
-
-
-
-
 ?>

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: gestionferreteria
+-- Host: 127.0.0.1    Database: db_ferreteria
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -59,6 +59,7 @@ CREATE TABLE `tcategorias` (
 
 LOCK TABLES `tcategorias` WRITE;
 /*!40000 ALTER TABLE `tcategorias` DISABLE KEYS */;
+INSERT INTO `tcategorias` VALUES (1,'Tuercas'),(2,'Tornillos'),(3,'Clavos'),(4,'Arandelas');
 /*!40000 ALTER TABLE `tcategorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,6 +111,7 @@ CREATE TABLE `testadoproductos` (
 
 LOCK TABLES `testadoproductos` WRITE;
 /*!40000 ALTER TABLE `testadoproductos` DISABLE KEYS */;
+INSERT INTO `testadoproductos` VALUES (1,'Disponible'),(2,'No disponible'),(3,'En oferta');
 /*!40000 ALTER TABLE `testadoproductos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +163,7 @@ CREATE TABLE `tpersonas` (
   CONSTRAINT `tpersonas_ibfk_1` FOREIGN KEY (`Id_ciudad`) REFERENCES `ciudad` (`ID`),
   CONSTRAINT `tpersonas_ibfk_2` FOREIGN KEY (`Id_documento`) REFERENCES `ttiposdoc` (`ID`),
   CONSTRAINT `tpersonas_ibfk_3` FOREIGN KEY (`IDgenero`) REFERENCES `tgeneros` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +172,7 @@ CREATE TABLE `tpersonas` (
 
 LOCK TABLES `tpersonas` WRITE;
 /*!40000 ALTER TABLE `tpersonas` DISABLE KEYS */;
-INSERT INTO `tpersonas` VALUES (1,'luis Angel Gil Ballestero',1,1121040400,'carrera 11',32033757,1,1,1),(2,'Jose Andres Solano',2,1121296184,'Carrera 12',123456789,1,2,2);
+INSERT INTO `tpersonas` VALUES (1,'luis Angel Gil Ballestero',1,1121040400,'carrera 11',32033757,1,1,1),(2,'Jose Andres Solano',2,1121296184,'Carrera 12',123456789,1,2,2),(3,'jair tiller',2,1234456,'carrera 20-calle 16 - #20-124',13243554,2,0,1),(4,'alexander',2,1234456,'carrera 20-calle 16 - #20-124',13243554,2,0,1),(5,'alexander',2,1234456,'carrera 20-calle 16 - #20-124',13243554,2,0,1),(8,'daniel',1,1234456,'carrera 20-calle 16 - #20-124',13243554,1,1,3),(10,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(11,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(12,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(13,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(14,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(15,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(16,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(17,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(18,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(19,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(20,'Andres Saantigo',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,1),(23,'Andres ',1,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,3),(25,'Andres solano',2,12345678,'carrera 20-calle 16 - #20-124',23445677,1,1,5),(26,'Jenna ortega',2,34567778,'calle-12',23445566,2,1,4),(27,'luis angel',1,1121040400,'carrera 11 15-29',32033757,1,1,1);
 /*!40000 ALTER TABLE `tpersonas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,6 +253,7 @@ CREATE TABLE `tproductoxproveedores` (
   PRIMARY KEY (`ID`),
   KEY `fk_tProductoxProveedores_tproductos1_idx` (`tproductos_ID`),
   KEY `fk_tProductoxProveedores_tProveedores1_idx` (`tProveedores_ID`),
+  KEY `ID` (`ID`),
   CONSTRAINT `fk_tProductoxProveedores_tproductos1` FOREIGN KEY (`tproductos_ID`) REFERENCES `tproductos` (`ID`),
   CONSTRAINT `fk_tProductoxProveedores_tProveedores1` FOREIGN KEY (`tProveedores_ID`) REFERENCES `tproveedores` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -311,7 +314,7 @@ CREATE TABLE `troles` (
 
 LOCK TABLES `troles` WRITE;
 /*!40000 ALTER TABLE `troles` DISABLE KEYS */;
-INSERT INTO `troles` VALUES (1,'Activo'),(2,'Inactivo');
+INSERT INTO `troles` VALUES (1,'Administrador'),(2,'vendedor');
 /*!40000 ALTER TABLE `troles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,7 +338,7 @@ CREATE TABLE `ttiposdoc` (
 
 LOCK TABLES `ttiposdoc` WRITE;
 /*!40000 ALTER TABLE `ttiposdoc` DISABLE KEYS */;
-INSERT INTO `ttiposdoc` VALUES (1,'Cedula ciudadnia'),(2,'Cedula extrajera');
+INSERT INTO `ttiposdoc` VALUES (1,'Cedula ciudadnia'),(2,'Tarjeta de identidad');
 /*!40000 ALTER TABLE `ttiposdoc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,16 +351,16 @@ DROP TABLE IF EXISTS `ttrabajadores`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ttrabajadores` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `usuario` int DEFAULT NULL,
-  `contrasenia` varchar(45) DEFAULT NULL,
   `IDrol` int NOT NULL,
   `IDpersona` int NOT NULL,
-  PRIMARY KEY (`ID`),
+  `usuario` varchar(50) NOT NULL,
+  `contrasenia` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID`,`usuario`),
   KEY `fk_tTrabajadores_tRoles1_idx` (`IDrol`),
   KEY `fk_tTrabajadores_tPersonas1_idx` (`IDpersona`),
   CONSTRAINT `fk_tTrabajadores_tPersonas1` FOREIGN KEY (`IDpersona`) REFERENCES `tpersonas` (`ID`),
   CONSTRAINT `fk_tTrabajadores_tRoles1` FOREIGN KEY (`IDrol`) REFERENCES `troles` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,6 +369,7 @@ CREATE TABLE `ttrabajadores` (
 
 LOCK TABLES `ttrabajadores` WRITE;
 /*!40000 ALTER TABLE `ttrabajadores` DISABLE KEYS */;
+INSERT INTO `ttrabajadores` VALUES (1,1,2,'sauna05','2345'),(2,1,1,'andres123','2005'),(3,1,1,'dfefss','ssss'),(4,2,25,'lionelmessi','2022'),(5,2,25,'lionelmessi','2022'),(6,2,26,'ortega123','alex'),(7,2,26,'ortega123','alex'),(8,2,26,'ortega123','alex'),(9,2,26,'ortega123','alex'),(10,2,26,'ortega123','alex'),(11,2,26,'ortega123','alex'),(12,2,26,'ortega123','alex'),(13,2,26,'ortega123','alex'),(14,2,27,'luisg','2126'),(15,2,27,'luisg','2126'),(16,2,27,'luisg','2126'),(17,2,27,'luisg','2126');
 /*!40000 ALTER TABLE `ttrabajadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,4 +412,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-07 11:20:20
+-- Dump completed on 2024-06-12 10:08:30
